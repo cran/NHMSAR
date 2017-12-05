@@ -46,7 +46,7 @@ function(data,X=NULL,nc1=1,nc2=2,lag=10,regime=0,CI = FALSE,Bsim=0,N.samples=1,a
 	} else {
 		lines((-lag:lag)*dt,s.cc/n.obs/sd1/sd2,col=col)
 	}
-        if (CI==TRUE) {
+    if (CI==TRUE) {
 			IC = matrix(0,2*lag+1,2)
         	for (k in 1:(2*lag+1)) {
         		tmp.cc = diff(S.CC[1:(Bsim+1),k])
@@ -56,5 +56,5 @@ function(data,X=NULL,nc1=1,nc2=2,lag=10,regime=0,CI = FALSE,Bsim=0,N.samples=1,a
         	lines((-lag:lag)*dt,IC[,1]/sd1/sd2,lty=2,col=col)
         	lines((-lag:lag)*dt,IC[,2]/sd1/sd2,lty=2,col=col)
         } else {IC = NULL}
-     list(ccf=s.cc/n.obs/sd1/sd2,lag=-lag:lag,CI=IC)
+     list(ccf=s.cc/n.obs/sd1/sd2,lag=-lag:lag,CI=IC/sd1/sd2)
 }

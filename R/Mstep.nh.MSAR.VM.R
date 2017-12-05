@@ -6,14 +6,14 @@ function(data,theta,FB,covar.trans=NULL,method=method,constr=0)  {
 	  if(is.na(d) | is.null(d)){d=1}
 	  M=attributes(theta)$NbRegimes
 	  
-      if (length(covar)==1) {
-    	  Lag = covar
-    	  covar = array(data[(1):(T-Lag+1),,],c(T-Lag+1,N.samples,d))
+      if (length(covar.trans)==1) {
+    	  Lag = covar.trans
+    	  covar.trans = array(data[(1):(T-Lag+1),,],c(T-Lag+1,N.samples,d))
     	  data =  array(data[Lag:T,,],c(T-Lag+1,N.samples,d))
       }
 
-	  N.samples = dim(covar)[2]
-	  ncov.trans = dim(covar)[3]
+	  N.samples = dim(covar.trans)[2]
+	  ncov.trans = dim(covar.trans)[3]
       par.hh = Mstep.hh.MSAR.VM(data,theta,FB,constr)
       theta$transmat[which(theta$transmat<1e-15)] = 1e-15
       theta$transmat = mk_stochastic(theta$transmat)
@@ -26,7 +26,7 @@ function(data,theta,FB,covar.trans=NULL,method=method,constr=0)  {
  
       if (order>0) {deb = order+1}
       else {deb = 1} 
-	resopt = ucminf(par.init,fn=loglik_nh_inp.VM,gr=NULL,covar=array(covar[deb+(1:(lxi)),,],c(lxi,N.samples,ncov.trans)),xi=FB$probSS,nh_transition=nh_transition,hessian=0,control = list(trace=FALSE))
+	resopt = ucminf(par.init,fn=loglik_nh_inp.VM,gr=NULL,covar=array(covar.trans[deb+(1:(lxi)),,],c(lxi,N.samples,ncov.trans)),xi=FB$probSS,nh_transition=nh_transition,hessian=0,control = list(trace=FALSE))
       #res = deplie2(resopt$par);
       res = deplie2.VM(resopt$par);
       trans = res$trans ;
