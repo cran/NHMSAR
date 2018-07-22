@@ -14,6 +14,7 @@ function(data,X=NULL,nc1=1,nc2=2,lag=10,regime=0,CI = FALSE,Bsim=0,N.samples=1,a
 		S.CC = matrix(0,Bsim+1,2*lag+1)
 		N.OBS = matrix(0,Bsim+1,2*lag+1)	
 	}
+	cc.ex = matrix(0,dim(data)[2],2*lag+1)
 	for (ex in 1:dim(data)[2]) {
 			x1 = data[,ex,nc1]
 			x2 = data[,ex,nc2]
@@ -38,13 +39,15 @@ function(data,X=NULL,nc1=1,nc2=2,lag=10,regime=0,CI = FALSE,Bsim=0,N.samples=1,a
 				S.CC[ex/N.samples+1,] = s.cc
 				N.OBS[ex/N.samples+1,] = n.obs
 			}}
+			cc.ex[ex,] = cc 
 	}
 	if (add==FALSE) {
 		plot((-lag:lag)*dt,s.cc/n.obs/sd1/sd2,typ="l",ylab=ylab,xlab="Lag (day)",ylim=ylim,col=col,lwd=2)
 		grid()
 		if (!is.null(names)){title(paste(names[nc1],", ",names[nc2],sep=""))}
 	} else {
-		lines((-lag:lag)*dt,s.cc/n.obs/sd1/sd2,col=col)
+	  lines((-lag:lag)*dt,s.cc/n.obs/sd1/sd2,col=col)
+	  #matlines((matrix((-lag:lag)*dt,2*lag+1,dim(cc.ex)[1])),t(cc.ex/sd1/sd2),col="gray",lty=1)
 	}
     if (CI==TRUE) {
 			IC = matrix(0,2*lag+1,2)

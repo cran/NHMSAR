@@ -1,5 +1,5 @@
 cor.MSAR <-
-function(data,data.sim,lag=NULL,nc=1,alpha=.05,plot=FALSE,xlab="Time (days)",dt=1) {
+function(data,data.sim,lag=NULL,nc=1,alpha=.05,plot=FALSE,xlab="Time (days)",dt=1,ylab="Correlation",...) {
 	N.s = dim(data)[2]
 	N.sim = dim(data.sim)[2]
 	N = floor(N.sim/N.s)
@@ -24,10 +24,12 @@ function(data,data.sim,lag=NULL,nc=1,alpha=.05,plot=FALSE,xlab="Time (days)",dt=
 	}
 	C.sim.mean = apply(C.sim,1,mean)
 	if (plot) {
-		plot((0:(lag-1))*dt,C.data,typ="l",ylab="Correlation",xlab=xlab,lwd=2)
-		lines((0:(lag-1))*dt,C.sim.mean,col="red",lwd=1.5)
-		lines((0:(lag-1))*dt,IC[1,],col="red",lty=3,lwd=1.5)
-		lines((0:(lag-1))*dt,IC[2,],col="red",lty=3,lwd=1.5)
+		plot((0:(lag-1))*dt,C.data,typ="l",ylab=ylab,xlab=xlab,lwd=2,...)
+		for (k in 1:N){lines((0:(lag-1))*dt,C.sim[,k],col="gray",lwd=1.5)}
+	  lines((0:(lag-1))*dt,C.data,lwd=2)
+	  
+#		lines((0:(lag-1))*dt,IC[1,],col="red",lty=3,lwd=1.5)
+#		lines((0:(lag-1))*dt,IC[2,],col="red",lty=3,lwd=1.5)
 		grid()
 	}
 

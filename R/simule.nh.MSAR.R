@@ -84,9 +84,9 @@ for (ex in 1:N.samples){
 # else{ # d>1
 	for (t in max(c(2,order+1,L+1)):(T)){
 		if (substr(label,1,1) == "N" & length(covar.trans)==1) {
-			if (is.null(link.ct)) {z = array(Y[t-L,ex,nc],c(1,1,d.c))}
+			if (is.null(link.ct)) {z = Y[t-L,ex,nc,drop=FALSE]}
 			else {
-				z = link.ct(array(Y[t-L,ex,nc],c(1,1,d.c)))
+				z = link.ct(Y[t-L,ex,,drop=FALSE])
 				#z = matrix(z,1,length(z))
 			}
 			transition[,,t,ex] = nh_transitions(z,theta$par.trans,theta$transmat)

@@ -3,5 +3,5 @@ export(init.theta.MSAR,fit.MSAR,Cond.prob.MSAR,cor.MSAR,Estep.MSAR,forecast.prob
  importFrom("grDevices", "dev.copy2eps", "dev.new", "gray")
  importFrom("graphics", "abline", "grid", "lines", "plot", "polygon","title")
  importFrom("stats", "acf", "cor", "kmeans", "lm", "optim", "pnorm","predict", "qqplot", "quantile", "rmultinom", "rnorm","runif", "sd", "var")
-import(ucminf,lars,caTools,glasso,ncvreg,graphics,stats)
+import(ucminf,lars,glasso,ncvreg,graphics,stats)
 

@@ -1,5 +1,5 @@
-e33db3ed8dd918fd6cdc4b43ce2124fe *DESCRIPTION
-4a5512b59187827362991cf88c36c837 *NAMESPACE
+99e7ffb4c6e94d324986b373e73818bc *DESCRIPTION
+554ba1e55dbbdc93d11006cbb8fd6756 *NAMESPACE
 5dc9fad58d4a551ed0742e26d6dbbee5 *R/EM_converged.R
 8591c60501026263ef21fdc07463e483 *R/ENu_graph.R
 326f463f3f27757e35f39dc4979475e2 *R/Estep.MSAR.R
@@ -25,9 +25,9 @@ bd9847123d65f68b8ed4d51304433df6 *R/Mstep.nh.MSAR.VM.R
 6776c0c9df45506619b156dc09027932 *R/as.thetaMSAR.R
 a43a40f3decc93820e1b07bff0332c99 *R/as.thetaMSAR.VM.R
 304aec01e96062ae29f68d3ddc0c6887 *R/cond.prob.msar.r
-5b3b4e8d001a8c531e26a9e6d3aca7a6 *R/cor.MSAR.R
-ba208902e7f8ff9a223cfad15f8cd009 *R/cross.cor.MSAR.R
-b28275d589654b51b8b4c35b57cc63af *R/cross.cor1.MSAR.R
+fc623ae47c6329e8d7a780944d6c8b6a *R/cor.MSAR.R
+2b6120c3dd34b9144309966e78e9113c *R/cross.cor.MSAR.R
+59dec887b971670f60169b8ced033d39 *R/cross.cor1.MSAR.R
 92c27ef5fe9718ada99b536e0c563502 *R/deplie.VM.R
 2336ce76904e70479f5956eb4ca013d7 *R/deplie.c.VM.R
 b8f12dd8ae3ba598b1b885ffcbac1ae9 *R/deplie2.R
@@ -69,10 +69,10 @@ bab78b49b8ae8ab62289b61199f8680b *R/prediction.MSAR.R
 dba5d2c86438cd319e177222229e5df2 *R/regimes.plot.MSAR.R
 9d5958eab43125ec4635a00102cff81f *R/repmat.R
 9b1cf1da64afd337c11e96829a7f1fbf *R/sample.VM.R
-dac52e8b14fa0b38e1a5d18cb696cfc6 *R/simule.nh.MSAR.R
+44a09658a08418318800e9fe50493898 *R/simule.nh.MSAR.R
 025b640b6a15ec89f38af6276cd09cd6 *R/simule.nh.MSAR.VM.R
 9d1432ed196cc78cc96b0970481be123 *R/simule_MC.R
-5d224185d8e4b2bc5573ab24fd6f3184 *R/test.model.MSAR.R
+cf495a911cdda35ae7e79c4040ab5d34 *R/test.model.MSAR.R
 8a16903c7c837ba83385240e74b425dd *R/test.model.vect.MSAR.R
 91245d2fff6aef1ec7db9e8d06a11e09 *R/tps_sejour.R
 c5ce460f90305bd0c3cad9bb118a3c4d *R/tps_sejour_sup.R
@@ -105,7 +105,7 @@ d8a668758818afdf669af9ff26ac8b37 *man/Mstep.nn.MSAR.Rd
 6409ef6717d9dd304a295273dcf0f1b4 *man/PibDetteDemoc.Rd
 ee8c7b99653883e0b5ade48965ec8765 *man/Wind.Rd
 fa6b306518b2904b970ee75c28040b7f *man/WindDir.Rd
-98f613a1dc881d2c29798ed6cadd966c *man/cor.MSAR.Rd
+2518140abf4b032dd8f0e4c7ab1d8671 *man/cor.MSAR.Rd
 c7c5d6cbbd5d365fcda8bb04d2c73729 *man/cross.cor.MSAR.Rd
 b2e4218f51da623618fe066cf677af92 *man/emisprob.MSAR.VM.Rd
 5ecd7683e6da9b25f770a0bd736623e6 *man/fit.MSAR.Rd

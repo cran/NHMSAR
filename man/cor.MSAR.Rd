@@ -4,13 +4,13 @@
 \title{
 Empirical correlation functions comparison .}
 \description{
-Empirical correlation function of observed data and simulated data are plotted on the same figure. A fluctuation interval of simulations is added to help the comparison. %%  ~~ A concise (1-5 lines) description of what the function does. ~~
+Empirical correlation function of observed data and simulated data are plotted on the same figure. 
+A fluctuation interval of simulations is added to help the comparison. 
 }
 \usage{
-cor.MSAR(data, data.sim, lag = NULL, nc = 1, alpha = 0.05,
-plot=FALSE,xlab="Time (days)",dt=1)
+cor.MSAR(data,data.sim,lag=NULL,nc=1,alpha=.05,plot=FALSE,
+   xlab="Time (days)",dt=1,ylab="Correlation",...)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{data}{
 observed (or reference) time series, array of dimension T*N.samples*d }
@@ -19,7 +19,8 @@ observed (or reference) time series, array of dimension T*N.samples*d }
 N.sim have to be  K*N.samples with K large enough (for instance, K=100) }
 
   \item{lag}{
-maximum lag at which to calculate the empirical auto-correlation function. Default floor(T/2) with T the length of each data sample. }
+maximum lag at which to calculate the empirical auto-correlation function. 
+Default floor(T/2) with T the length of each data sample. }
   \item{nc}{
 number of component for which to calculate the empirical auto-correlation function. }
   \item{alpha}{
@@ -27,6 +28,9 @@ confidence level for computation of the fluctuation interval. Default= 0.05.}
   \item{plot}{if plot is TRUE plots are drawn (default is FALSE).}
   \item{xlab}{x axis label}
   	\item{dt}{default time step is equal to 1}
+  \item{ylab}{y axis label}
+    \item{...}{for optional plot arguments}
+
 }
 \details{The auto-correlation functions are computed from one or several independent realizations of the same length. 
 }
@@ -39,7 +43,8 @@ confidence level for computation of the fluctuation interval. Default= 0.05.}
 
 }
 \references{
-Bessac, J., Ailliot, P., & Monbet, V. (2013). Gaussian linear state-space model for wind fields in the North-East Atlantic. arXiv preprint arXiv:1312.5530.}
+Bessac, J., Ailliot, P., Monbet, V. (2015). Gaussian linear state-space model for wind fields in the North-East Atlantic. 
+Environmetrics, 26(1), 29-38.}
 \author{
 Valerie Monbet, valerie.monbet@univ-rennes1.fr}
 
