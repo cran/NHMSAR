@@ -1,4 +1,4 @@
-99e7ffb4c6e94d324986b373e73818bc *DESCRIPTION
+e762c1395d7b6f1d35d5ecfa53b61a12 *DESCRIPTION
 554ba1e55dbbdc93d11006cbb8fd6756 *NAMESPACE
 5dc9fad58d4a551ed0742e26d6dbbee5 *R/EM_converged.R
 8591c60501026263ef21fdc07463e483 *R/ENu_graph.R
@@ -7,7 +7,7 @@ affa76cd5fa7f3ddf85543fdcc162dc2 *R/Estep.MSAR.VM.R
 82d3ac024a983efad7a892a3be61b9a9 *R/MeanDurOver.R
 cf51ff8c000ee9e416309ad61b19fdb2 *R/MeanDurUnder.R
 f500b2fb2e5c9e1adfd87d3e01876421 *R/Mstep.classif.R
-ca112e558708d126b64908743f0867c1 *R/Mstep.hh.MSAR.R
+31c29286bff7f3a3671f68ea042b942d *R/Mstep.hh.MSAR.R
 a9a097fc0a405635b66395f3b7c50fd9 *R/Mstep.hh.MSAR.VM.R
 3e6e8bcb2536d577e21e93b4adae5cf2 *R/Mstep.hh.MSAR.with.constraints.R
 2bdb854e4b76ff5347fe189e6a6fbfd4 *R/Mstep.hh.SCAD.MSAR.R
@@ -36,7 +36,7 @@ deeb1e4dcdc601693ba9719054ae63a5 *R/deplie2.VM.R
 d99796dea0a78806668bbdb6b1f5c14d *R/emis4ps.MSAR.R
 7ca8ea11b3cbb845d6ac421e18c6da98 *R/emisprob.MSAR.R
 8c0bb7f53131f4c9a521b87570fffd69 *R/emisprob.MSAR.VM.R
-033b4ab8155b73aa924cd7e107aaab33 *R/fit.MSAR.R
+caa746d0a200965a5042088b0bc86237 *R/fit.MSAR.R
 14d3b1d9cc977cb90a7d53e0b83a438f *R/fit.MSAR.VM.R
 558400cfd3c2c4dffc3046d20549a0d3 *R/forecast.prob.MSAR.R
 76ede8bb4dc8f399457d8f5d731ea498 *R/forwards_backwards.R
@@ -89,7 +89,7 @@ a774fe79953d92a691ad8f129dbb43fe *data/meteo.data.rda
 e223fcc58961fbe4990bddce27840e86 *man/MeanDurOver.Rd
 d682bbe13a3a6d61d412191d063fb826 *man/MeanDurUnder.Rd
 ee1a738d88fdaa15450f92f75503499d *man/Mstep.classif.Rd
-b8605d2150052b02bf5b004ffd35c556 *man/Mstep.hh.MSAR.Rd
+6db24d7c9976d2f317c890bd3d318f64 *man/Mstep.hh.MSAR.Rd
 5e4793b38c31202b6547af1f14acfd23 *man/Mstep.hh.MSAR.VM.Rd
 88823b19a2595e74edd64de93d5b6fc7 *man/Mstep.hh.MSAR.with.constraints.Rd
 192874d5ee9c8749715e1e7912d49fa1 *man/Mstep.hh.SCAD.MSAR.Rd

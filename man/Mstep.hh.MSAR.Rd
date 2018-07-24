@@ -6,7 +6,7 @@ M step of the EM algorithm for fitting  homogeneous Markov switching auto-regres
 \description{
 M step of the EM algorithm for fitting   homogeneous Markov switching auto-regressive models, called in fit.MSAR.}
 \usage{
-Mstep.hh.MSAR(data, theta, FB)
+Mstep.hh.MSAR(data, theta, FB,sigma.diag=FALSE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -20,6 +20,9 @@ model's parameter; object of class MSAR. See also init.theta.MSAR.
   \item{FB}{
 Forward-Backward results, obtained by calling Estep.MSAR function
 }
+  \item{sigma.diag}{If sigma.diag==TRUE the estimated covariance of the innovation will be diagonal 
+  (default is FALSE)
+  }
 }
 
 \value{A list containing

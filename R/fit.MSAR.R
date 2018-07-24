@@ -65,7 +65,8 @@ covar.emis=NULL,covar.trans=NULL,method=NULL,constraints=FALSE,reduct=FALSE,K=NU
     	# -----------------------------
     	# ...... M step
     	if (label=='HH') {
-    		if (constraints == FALSE & penalty==FALSE & reduct==FALSE) {par = Mstep.hh.MSAR(data,theta,FB) }
+    		if (constraints == FALSE & penalty==FALSE & reduct==FALSE) {par = Mstep.hh.MSAR(data,theta,FB,
+    		                                                                      sigma.diag=sigma.diag) }
     		else if (constraints){
     			par = Mstep.hh.MSAR.with.constraints(data,theta,FB,K=K,d.y=d.y) 
     			attributes(theta)$n_par = M + M*(M-1) + 2*M*d # A and sigma diagonal

@@ -1,7 +1,7 @@
 Package: NHMSAR
 Type: Package
 Title: Non-Homogeneous Markov Switching Autoregressive Models
-Version: 1.9
+Version: 1.10
 Date: 2018-07-22
 Author: Valerie Monbet
 Maintainer: Valerie Monbet <valerie.monbet@gmail.com>
@@ -9,6 +9,6 @@ Description: Calibration, simulation, validation of (non-)homogeneous Markov swi
 License: GPL
 Imports: ucminf, lars, glasso, ncvreg
 NeedsCompilation: no
-Packaged: 2018-07-22 09:08:44 UTC; valerie
+Packaged: 2018-07-24 16:18:39 UTC; valerie
 Repository: CRAN
-Date/Publication: 2018-07-22 09:30:03 UTC
+Date/Publication: 2018-07-24 21:30:09 UTC

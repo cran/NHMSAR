@@ -1,5 +1,5 @@
 Mstep.hh.MSAR <-
-function(data,theta,FB)  {  
+function(data,theta,FB,sigma.diag=FALSE)  {  
 	T=dim(data)[1]
 	N.samples = dim(as.array(data))[2] 
 	d = dim(as.array(data))[3]
@@ -74,10 +74,13 @@ function(data,theta,FB)  {
         	   op_1[,,j] = t(as.matrix(op_1[,,j]))
         	   tmp2 = (op_2[, , j] + (A2tmp) %*% op[, , j] %*% t(A2tmp) - 
                    ((A2tmp) %*% t(op_1[, , j]) + t((A2tmp) %*% t(op_1[, , j]))))/postmix[j] - tmp %*% t(tmp)
-               Sigma[1:d,1:d,j]=tmp2[1:d,1:d]#+(det(tmp2[1:d,1:d])==0)*1e-4*diag(1,4)
-               for(kp in 1:order){
+            if (!sigma.diag){Sigma[1:d,1:d,j]=tmp2[1:d,1:d] #+(det(tmp2[1:d,1:d])==0)*1e-4*diag(1,4)
+            } else {
+              Sigma[1:d,1:d,j]=diag(diag(tmp2[1:d,1:d]),d)
+            }
+            for(kp in 1:order){
                	A2[j,kp,] = A2tmp[1:d,((kp-1)*d+1):(kp*d)]
-               }
+            }
 			}
 
 		} else {
@@ -85,7 +88,10 @@ function(data,theta,FB)  {
 		    	tmp = (m[,j])/postmix[j] 
 			    moy[j,1:d] = tmp[1:d] 
 			    tmp2 = op[, , j]/postmix[j] - tmp %*% t(tmp)
-                Sigma[1:d,1:d,j]=tmp2[1:d,1:d]
+			    if (!sigma.diag){ Sigma[1:d,1:d,j]=tmp2[1:d,1:d]
+			    } else {
+			      Sigma[1:d,1:d,j]=diag(diag(tmp2[1:d,1:d]),d)
+			    }
 			}
 
 		}
