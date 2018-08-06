@@ -25,6 +25,7 @@ numbers of samples for which prediction has to be computed}
 \value{
 Returns a list with the following elements:
   \item{y.p}{the one step ahead prediction for each time of data time series}
+  \item{var.p}{the associated variance}
   \item{pr}{the prediction probabilities for each regime }
 }
 %\references{}
@@ -47,8 +48,7 @@ Cond.prob.MSAR
 #theta.init = init.theta.MSAR(data,M=M,order=2,label="HH")
 #res.hh.2 = fit.MSAR(data,theta.init,verbose=TRUE,MaxIter=200)
 #y.p.2 = prediction.MSAR(data,res.hh.2$theta,ex=1:N.samples)
-#RMSE.2 = mean((data-y.p.2)^2)
-
+#RMSE.2 = mean((data-y.p.2$y.p)^2)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

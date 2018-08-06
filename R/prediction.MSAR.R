@@ -59,7 +59,7 @@ function(data,theta,covar.emis=NULL,covar.trans=NULL,ex=1){
 			y.p[t,iex, ] = 0
 			var.p[t,iex,,] =  0*theta$sigma[[1]]# same size as sigma, case d=1 ?
 			for (m in 1:M) {
-				var.p[t,iex,,] = var.p[t,iex,,]+pr[t,,iex]*theta$sigma[[m]]
+				var.p[t,iex,,] = var.p[t,iex,,]+pr[t,m,iex]*theta$sigma[[m]]
 				A0.m = theta$A0[m,]
 				if (substr(label,2,2)=="N") {
 					A0.m = A0.m+attributes(theta)$nh.emissions(matrix(covar.emis[t,ex[iex],],1,dim(covar.emis)[3]),as.matrix(theta$par.emis[[m]]))

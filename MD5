@@ -1,4 +1,4 @@
-e762c1395d7b6f1d35d5ecfa53b61a12 *DESCRIPTION
+12287ce1572873edcab7adb0943f1310 *DESCRIPTION
 554ba1e55dbbdc93d11006cbb8fd6756 *NAMESPACE
 5dc9fad58d4a551ed0742e26d6dbbee5 *R/EM_converged.R
 8591c60501026263ef21fdc07463e483 *R/ENu_graph.R
@@ -62,7 +62,7 @@ d219dc9df763d948da048fd571a65af0 *R/nhforwards_backwards.R
 1b86994a2bb2da97f11a2644a7ab9485 *R/plie.c.VM.R
 a261677bf9a7dd3c5ec1576d42240740 *R/plie2.R
 2cf26f507d7fa8ddf6cd957eed293c24 *R/plie2.VM.R
-bab78b49b8ae8ab62289b61199f8680b *R/prediction.MSAR.R
+a94801626f0af1cacbf06e828da2e0de *R/prediction.MSAR.R
 56c149487860a36d16be5ad3300ef50a *R/print.thetaMSAR.R
 6778301307565d9fb5f163723daf3a41 *R/print.thetaMSAR.VM.R
 8c4c1be847a76a0bfd30418134b3032b *R/reg_scad.R
@@ -117,7 +117,7 @@ f01d8729f0e1cee721d1190ccbcc9e26 *man/forwards_backwards.Rd
 15296a6ea25efd4dcf67b75fcfd11848 *man/log_dens_Von_Mises.Rd
 50e431c1bd431d5c7ea95c88ca35bec5 *man/meteo.data.Rd
 94694c80f0537f22a25f221481af6542 *man/nhforwards_backwards.Rd
-b1e867e1a827b8973796827cc3a8aa62 *man/prediction.MSAR.Rd
+a3005877aa685903228fea684535a34a *man/prediction.MSAR.Rd
 2c7c3997370b948fd22a379ee5c02311 *man/regimes.plot.MSAR.Rd
 3eb99e7e1f52c024cdec11925af0a748 *man/simule.nh.MSAR.Rd
 9a7e58c3cc27f68890373fbd9fb2690a *man/simule.nh.MSAR.VM.Rd
