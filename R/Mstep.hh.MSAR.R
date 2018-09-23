@@ -1,29 +1,29 @@
 Mstep.hh.MSAR <-
-function(data,theta,FB,sigma.diag=FALSE)  {  
+function(data,theta,FB,sigma.diag=FALSE,sigma.equal=FALSE)  {  
 	T=dim(data)[1]
 	N.samples = dim(as.array(data))[2] 
 	d = dim(as.array(data))[3]
 	if(is.null(d)|is.na(d)) {d = 1}
-    M <- attributes(theta)$NbRegimes
-    p <- attributes(theta)$order
+  M <- attributes(theta)$NbRegimes
+  p <- attributes(theta)$order
 	order <- max(p,1)
 	data = array(data,c(T,N.samples,d))
 	data2 = array(0,c(order*d,T-order+1,N.samples))
 	cpt=1
-    for (o in order:1) {
+  for (o in order:1) {
     	for (kd in 1:d) {
     		 data2[cpt,,] = data[o:(T-order+o),,kd]
     		 cpt =cpt+1
     	}
-    }
+  }
 
-    T = length(o:(dim(data)[1]-order+o))
+  T = length(o:(dim(data)[1]-order+o))
 	exp_num_trans = 0
 	exp_num_visit = 0
 	exp_num_visits1 = 0
 	postmix = 0
 	m = matrix(0,d*order,M) ; m_1 = m ; c = matrix(0,M,1) ; s=c ; 
-    op = array(0,c(d*order,d*order,M) ); op_1 = op ; op_2 = op_1 ;
+  op = array(0,c(d*order,d*order,M) ); op_1 = op ; op_2 = op_1 ;
 
 	for (ex in 1:N.samples) {
 		xit  = array(FB$probSS[,,,ex],c(M,M,T-2))
@@ -74,14 +74,20 @@ function(data,theta,FB,sigma.diag=FALSE)  {
         	   op_1[,,j] = t(as.matrix(op_1[,,j]))
         	   tmp2 = (op_2[, , j] + (A2tmp) %*% op[, , j] %*% t(A2tmp) - 
                    ((A2tmp) %*% t(op_1[, , j]) + t((A2tmp) %*% t(op_1[, , j]))))/postmix[j] - tmp %*% t(tmp)
-            if (!sigma.diag){Sigma[1:d,1:d,j]=tmp2[1:d,1:d] #+(det(tmp2[1:d,1:d])==0)*1e-4*diag(1,4)
+            if (!sigma.diag){
+              Sigma[1:d,1:d,j]=tmp2[1:d,1:d] #+(det(tmp2[1:d,1:d])==0)*1e-4*diag(1,4)
             } else {
               Sigma[1:d,1:d,j]=diag(diag(tmp2[1:d,1:d]),d)
             }
             for(kp in 1:order){
                	A2[j,kp,] = A2tmp[1:d,((kp-1)*d+1):(kp*d)]
             }
-			}
+		   }
+		  if (sigma.equal & M>1){
+		    S=prior[1]*Sigma[1:d,1:d,1]
+		    for (j in 2:M){S = S+prior[2]*Sigma[1:d,1:d,2]}
+		    for (j in 1:M){Sigma[1:d,1:d,j] = S}
+		  }
 
 		} else {
 			for (j in 1:M) { 
@@ -92,7 +98,13 @@ function(data,theta,FB,sigma.diag=FALSE)  {
 			    } else {
 			      Sigma[1:d,1:d,j]=diag(diag(tmp2[1:d,1:d]),d)
 			    }
+			}		  
+		  if (sigma.equal & M>1){
+			  S=prior[1]*Sigma[1:d,1:d,1]
+			  for (j in 2:M){S = S+prior[j]*Sigma[1:d,1:d,j]}
+			  for (j in 1:M){Sigma[1:d,1:d,j] = S}
 			}
+		  
 
 		}
 		

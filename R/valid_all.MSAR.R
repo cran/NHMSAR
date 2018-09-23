@@ -9,10 +9,11 @@ Bsim = N.sim/N.samples
 qqp = qqplot(data[,,id],simu[,,id],pch=20,xlab='Observations',ylab='Simulations',cex=.6)
 title(title)
 abline(a=0,b=1)
-q = matrix(0,Bsim,length(data[,,1]))
+q = matrix(0,Bsim,length(data[,,id]))
 s.data = sort(data[,,id])
 lens = length(s.data)
 for (k in 1:Bsim) {
+  tmp = 
 	q[k,] = sort(simu[,((k-1)*N.samples+1):(k*N.samples),id])
 }
 if (spaghetti){

@@ -10,7 +10,7 @@ Fit (non) homogeneous Markov switching autoregressive models by EM algorithm. No
 fit.MSAR(data, theta, MaxIter = 100, eps = 1e-05, verbose = FALSE, 
    covar.emis = NULL, covar.trans = NULL, method = NULL, 
    constraints = FALSE, reduct=FALSE, K = NULL, d.y = NULL, 
-   ARfix = FALSE,penalty=FALSE,sigma.diag=FALSE,
+   ARfix = FALSE,penalty=FALSE,sigma.diag=FALSE, sigma.equal=FALSE,
    lambda1=.1,lambda2=.1,a=3.7,...)
 }
 %- maybe also 'usage' for other objects documented here.
@@ -45,8 +45,12 @@ number of sites. For instance, if one considers wind at k locations, K=k. Or mor
 dimension in each sites. For instance, if one considers only wind intensity than d.y = 1; but, if one considers cartesian components of wind, then d.y =2.}
 \item{ARfix}{if TRUE the AR parameters are not estimated, they stay fixed at their initial value.}
 \item{reduct}{if TRUE, autoregressive matrices and innovation covariance matrices are constrained to have the same pattern (zero and non zero coefficients) as the one of initial matrices.   }
-\item{sigma.diag}{if TRUE the estimated innovation covariances are diagonal}
-\item{penalty}{choice of the penalty for the autoregressive matrices. Possible values are ridge (available for regression matrices only), lasso or SCAD (default). }
+  \item{sigma.diag}{If sigma.diag==TRUE the estimated covariance of the innovation will be diagonal 
+  (default is FALSE) -  available only for HH models 
+  }
+  \item{sigma.equal}{If sigma.equal==TRUE the estimated covariance of the innovation will be the same in all regimes -  available only for HH models
+  (default is FALSE)}
+  \item{penalty}{choice of the penalty for the autoregressive matrices. Possible values are ridge (available for regression matrices only), lasso or SCAD (default). }
  \item{lambda1}{
 penalization constant for the precision matrices. It may be a scalar or a vector of length M (with M the number of regimes). If it is equal to 0 no penalization is introduced for the precision matrices. }
   \item{lambda2}{

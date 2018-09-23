@@ -136,7 +136,7 @@ function(data,theta,FB,covar=NULL,verbose=FALSE)  {
      else { # p (order) = 0
     	for (j in 1:M) {
     		a = as.matrix(c(moy[j,],log(Sigma[j,]),par_emis[j,]))
-   		    gamma=matrix(FB$probS[,,j],N.samples,T)
+   		  gamma=matrix(FB$probS[,,j],N.samples,T)
     		resopt = ucminf(a,fn=ll_gausshn_p0.MSAR,data=data[(order+1):T,,],gamma=gamma,nh.emissions=nh.emissions,covar=array(covar[(order+1):T,,],c(T-order,N.samples,dim(covar)[3])), gr = NULL, control = list(trace=FALSE))          	
             moy[j,]=resopt$par[1:d]
             if(d==1){sigma.res[j,] <- exp(resopt$par[2])}               

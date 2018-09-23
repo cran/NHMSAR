@@ -1,7 +1,7 @@
 fit.MSAR <-
 function(
     data,theta,MaxIter=100,eps=1e-5,verbose=FALSE,
-covar.emis=NULL,covar.trans=NULL,method=NULL,constraints=FALSE,reduct=FALSE,K=NULL,d.y=NULL,ARfix=FALSE,penalty=FALSE,sigma.diag=FALSE,lambda1=.1,lambda2=.1,a=3.7,...
+covar.emis=NULL,covar.trans=NULL,method=NULL,constraints=FALSE,reduct=FALSE,K=NULL,d.y=NULL,ARfix=FALSE,penalty=FALSE,sigma.diag=FALSE,sigma.equal=FALSE,lambda1=.1,lambda2=.1,a=3.7,...
 ) { 
 	cl <- match.call()
     now <- Sys.time()
@@ -65,9 +65,9 @@ covar.emis=NULL,covar.trans=NULL,method=NULL,constraints=FALSE,reduct=FALSE,K=NU
     	# -----------------------------
     	# ...... M step
     	if (label=='HH') {
-    		if (constraints == FALSE & penalty==FALSE & reduct==FALSE) {par = Mstep.hh.MSAR(data,theta,FB,
-    		                                                                      sigma.diag=sigma.diag) }
-    		else if (constraints){
+    		if (constraints == FALSE & penalty==FALSE & reduct==FALSE ) {
+    		  par = Mstep.hh.MSAR(data,theta,FB,sigma.diag=sigma.diag,sigma.equal=sigma.equal) 
+    	  } else if (constraints){
     			par = Mstep.hh.MSAR.with.constraints(data,theta,FB,K=K,d.y=d.y) 
     			attributes(theta)$n_par = M + M*(M-1) + 2*M*d # A and sigma diagonal
     		} 

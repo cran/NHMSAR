@@ -15,7 +15,7 @@ function(data,...,M,order,regime_names=NULL,nh.emissions=NULL,nh.transitions=NUL
      else {d = dim(data)[3]} 
      
      
-     if (cl.init == "mean") {
+  if (cl.init == "mean") {
 		 d.data = matrix(0,(T-1)*N.samples,d)
 		 data.mat = matrix(0,T*N.samples,d)
 		 for (id in 1:d) { 
@@ -37,7 +37,7 @@ function(data,...,M,order,regime_names=NULL,nh.emissions=NULL,nh.transitions=NUL
 		 }
 		 else {class = 1}
 	 }
-     else {    
+  else {    
      	d.var = array(0,c((T-1),N.samples,d))
 		ht = 3
     	for (id in 1:d) { 
