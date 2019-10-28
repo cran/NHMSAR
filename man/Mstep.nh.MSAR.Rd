@@ -7,7 +7,7 @@ M step of the EM algorithm.}
 M step of the EM algorithm for fitting Markov switching auto-regressive models with non homogeneous transitions.}
 \usage{
 Mstep.nh.MSAR(data,theta,FB,covar=NULL,method=method,
-ARfix=FALSE,reduct=FALSE,penalty=FALSE,sigma.diag=FALSE,
+ARfix=FALSE,reduct=FALSE,penalty=FALSE,sigma.diag=FALSE,sigma.equal=FALSE,
 lambda1=lambda1,lambda2=lambda2,par = NULL)
 }
 %- maybe also 'usage' for other objects documented here.
@@ -27,6 +27,8 @@ transitions covariates}
   \item{method}{
 permits to choice the optimization algorithm. default is "ucminf", other possible choices are "BFGS" or "L-BFGS-B"}
 \item{sigma.diag}{if TRUE the innovation covariance matrices are diagonal.}
+  \item{sigma.equal}{If sigma.equal==TRUE the estimated covariance of the innovation will be the same in all regimes -  available only for models with homogeneous emission probabilities
+  (default is FALSE)}
 \item{reduct}{if TRUE, autoregressive matrices and innovation covariance matrices are constrained to have the same pattern (zero and non zero coefficients) as the one of initial matrices.   }
  \item{ARfix}{
 if TRUE the AR parameters are not estimated, they stay fixed at their initial value. }
@@ -61,5 +63,5 @@ Valerie Monbet, valerie.monbet@univ-rennes1.fr}
 fit.MSAR, init.theta.MSAR, Mstep.hh.MSAR}
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{EM algorithm }
-\keyword{ M step }
+\keyword{EM algorithm M step }
+

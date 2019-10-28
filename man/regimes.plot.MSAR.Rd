@@ -8,7 +8,7 @@ Plot MSAR time series with regimes
  Plot MSAR time series with regimes materialized by gray boxes. }
 \usage{
 regimes.plot.MSAR(res, data, ex = 1, col.l = "red", nc = 1, 
-ylim = NULL, xlab = "time", ylab = "series", d = NULL, dt = 1, lwd = 1)
+ylim = NULL, xlab = "time", ylab = "series", d = NULL, dt = 1, lwd = 1, cex = 1)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -36,6 +36,8 @@ a title for the y axis}
 time step (default=1)}
   \item{lwd}{
 width of the line}
+  \item{cex}{
+symbols/text size}
 }
 
 

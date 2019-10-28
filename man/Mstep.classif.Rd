@@ -6,7 +6,7 @@ fit an AR model for each class of C}
 \description{
 fit an AR model for each class of C by maximum likelihood method.}
 \usage{
-Mstep.classif(data, C, order)
+Mstep.classif(data, C, order,sigma.diag=FALSE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -18,6 +18,8 @@ T: number of time steps of each sample, N.samples: number of realisations of the
 Class sequence}
   \item{order}{
 order of AR models (all models will have the same order)}
+  \item{sigma.diag}{
+if TRUE the covariance matrices will be diagonal (default FALSE)}
 }
 
 \value{list containing
@@ -48,4 +50,3 @@ str(res)
 }% Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
 \keyword{ MSAR with a priori classification }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

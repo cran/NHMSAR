@@ -4,7 +4,7 @@
 Fit von Mises (non) homogeneous Markov switching autoregressive models}
 
 \description{
-Fit von Mises (non) homogeneous Markov switching autoregressive models by EM algorithm. Non homogeneity may be introduce at the intercept level or in the probability transitions. The link functions are defined in the initialisation step (running init.theta.MSAR.VM.R). 
+Fit von Mises (non) homogeneous Markov switching autoregressive models by EM algorithm. Non homogeneity may be introduced at the intercept level or in the probability transitions. The link functions are defined in the initialisation step (running init.theta.MSAR.VM.R). 
 }
 \usage{
 fit.MSAR.VM(data, theta, 

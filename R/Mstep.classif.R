@@ -1,27 +1,27 @@
 Mstep.classif <-
-function(data,C,order)  {  
+function(data,C,order,sigma.diag=FALSE)  {  
 	T=dim(data)[1]
 	N.samples = dim(as.array(data))[2] 
 	d = dim(as.array(data))[3]
 	if(is.null(d)|is.na(d)) {d = 1}
-    M <- length(unique(c(C)))
-    p <- order
+  M <- length(unique(c(C)))
+  p <- order
 	order <- max(p,1)
 	
+	if (p>0){ # modif le 17/01/2019 (before it was : p>1)
 	data = array(data,c(T,N.samples,d))
 	data2 = array(0,c(order*d,T-order+1,N.samples))
 	cpt=1
-
     for (o in order:1) {
     	for (kd in 1:d) {
     		 	data2[cpt,,] = data[o:(T-order+o),,kd]
     		 	cpt =cpt+1
     		 }
     }
-        
+	}
     #T = length(o:(dim(data)[1]-order+o))
     tmp = order:dim(C)[1]
-    C = matrix(C[tmp,,],length(tmp),N.samples)
+    C = matrix(C[tmp,,],length(tmp),N.samples)   
     T = dim(C)[1]
 #	exp_num_trans = 0
 #	exp_num_visit = 0
@@ -59,7 +59,8 @@ function(data,C,order)  {
      Sigma <- array(0,c(d,d,M))
 	 A2 <-array(0,c(M,order,d^2))
 																		
-	for (j in 1:M) { 
+	 if (p>0){ # modif le 17/01/2019 (before it was : p>1)
+	   for (j in 1:M) { 
 		Cxx = postmix[j]*op[,,j] - m[,j]%*%t(m[,j])
 		if (det(Cxx)<=0) {Cxx = Cxx+1e-4*diag(1,d)}
         Cxy = postmix[j]*op_1[,,j] - m[,j]%*%t(m_1[,j])
@@ -89,6 +90,22 @@ function(data,C,order)  {
      }else{
 		Atmp=matrix(A2,M,order)
 		sigma=matrix(Sigma,byrow=TRUE,nrow=M)
+     }
+	} else {
+	  Atmp = NULL
+	  for (j in 1:M) { 
+	    tmp = (m[,j])/postmix[j] 
+	    moy[j,1:d] = tmp[1:d] 
+	    tmp2 = op[, , j]/postmix[j] - tmp %*% t(tmp)
+	    if (!sigma.diag){ Sigma[1:d,1:d,j]=tmp2[1:d,1:d]
+	    } else {
+	      Sigma[1:d,1:d,j]=diag(diag(tmp2[1:d,1:d]),d)
+	    }
+	  }
+	  if(d>1){
+	    sigma=list()
+	    for(j in 1:M){sigma[[j]]=Sigma[,,j]}
+	  }else{sigma=matrix(Sigma,byrow=TRUE,nrow=M)}
 	}
 	LLy = -T*N.samples*d/2-T*d/2 # observations
 	LLx = 0 # classification

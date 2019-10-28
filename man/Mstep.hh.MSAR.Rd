@@ -23,7 +23,7 @@ Forward-Backward results, obtained by calling Estep.MSAR function
   \item{sigma.diag}{If sigma.diag==TRUE the estimated covariance of the innovation will be diagonal 
   (default is FALSE) -  available only for HH models 
   }
-  \item{sigma.equal}{If sigma.equal==TRUE the estimated covariance of the innovation will be the same in all regimes -  available only for HH models
+  \item{sigma.equal}{If sigma.equal==TRUE the estimated covariance of the innovation will be the same in all regimes -  available only for models with homogeneous emission probabilities
   (default is FALSE)
   }
 }

@@ -104,7 +104,8 @@ covar.emis=NULL,covar.trans=NULL,method=NULL,constraints=FALSE,reduct=FALSE,K=NU
              }
 		}
 		else if (label=='NH') { 
-			par = Mstep.nh.MSAR(data,theta,FB,covar=covar.trans,method=method,ARfix=ARfix,reduct=reduct,sigma.diag=sigma.diag,penalty=penalty,lambda1=lambda1,lambda2=lambda2,par=par) 
+			par = Mstep.nh.MSAR(data,theta,FB,covar=covar.trans,method=method,ARfix=ARfix,reduct=reduct,sigma.diag=sigma.diag,
+			                         sigma.equal=sigma.equal,penalty=penalty,lambda1=lambda1,lambda2=lambda2,par=par) 
     		if (order>0) {
 		        theta=list(par$A,par$A0,par$sigma,par$prior,par$transmat,par$par.trans)
              }          
@@ -152,7 +153,6 @@ covar.emis=NULL,covar.trans=NULL,method=NULL,constraints=FALSE,reduct=FALSE,K=NU
    					}
    				}
    				else {A.tmp[m,] = theta$A[i.tr[m],]}}
-
    		}
    		theta$A = A.tmp
    		theta$sigma = sigma.tmp
@@ -169,7 +169,7 @@ dimnames[[2]]
 		theta = as.thetaMSAR(theta,label=label,ncov.emis = ncov.emis,ncov.trans=ncov.trans)
 		FB$probS = FB$probS[,,i.tr]
 	}
-	#browser()
+
     if (penalty!="SCAD" ) {lambda1=rep(0,M)}
     npar = M*d+M*(M-1)
     if (substr(label,1,1)=="N") {npar = npar+M*length(theta$par.trans[1,])}
@@ -179,8 +179,11 @@ dimnames[[2]]
     	if (penalty!="SCAD" | max(abs(lambda1))==0) {npar = npar+sum(abs(theta$sigma[[m]][upper.tri(theta$sigma[[m]],diag=TRUE)])>0)}
     	else { npar = npar+sum(abs(par$sigma.inv[[m]][upper.tri(par$sigma.inv[[m]],diag=TRUE)])>1e-5)} # 1e-5 : arbitrary level... 
     }
+    if (sigma.diag){npar = (M-1)+M*(M-1)+M*d+M*d}
+    if (sigma.equal){npar = (M-1)+M*(M-1)+M*d+d*(d+1)/2}
+    if (sigma.diag & sigma.equal){npar = (M-1)+M*(M-1)+M*d+d}
     attributes(theta)$n_par = npar
-	#}
+
     BIC = -2*ll_history[cnt]+ attributes(theta)$n_par*log(length(c(data)))
     ll.pen = NULL
     if (penalty=="SCAD") {

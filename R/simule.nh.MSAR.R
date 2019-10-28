@@ -1,8 +1,10 @@
 simule.nh.MSAR <-
-function(theta,Y0,T,N.samples = 1,covar.emis=NULL,covar.trans=NULL,link.ct = NULL,nc=1) {
+function(theta,Y0,T,N.samples = 1,covar.emis=NULL,covar.trans=NULL,link.ct = NULL,nc=1,S0 = NULL) {
 	# If length(covar)==1, covar is built from Y with delay covar
 #	if (!inherits(res, "MSAR")) 
 #        stop("use only with \"MSAR\" objects")
+  
+if (!is.null(S0) & length(S0) != N.samples){stop("The length of S0 has to be equal to N.samples")}
 M = attributes(theta)$NbRegimes
 order = attributes(theta)$order
 d <- attributes(theta)$NbComp
@@ -15,9 +17,11 @@ S = matrix(0,T,N.samples)
 Y[1:max(order,1),,] = Y0[1:max(order,1),,]
 transition =  array(0,c(M,M,T,N.samples))
 
+if (is.null(S0)){
 for (ex in 1:N.samples) {
 	S[1,ex] = which(rmultinom(1, size = 1, prob = theta$prior)==1)
 }
+} else {	  S[1,] = S0}
 
 if (substr(label,1,1) == "N") {
 	nh_transitions = attributes(theta)$nh.transitions

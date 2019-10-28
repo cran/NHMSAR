@@ -54,9 +54,9 @@ function(data,...,M,order,regime_names=NULL,nh.emissions=NULL,nh.transitions=NUL
 		}
 	 }
 	 res = Mstep.classif(data,array(class,c(T,N.samples,1)),order=order)
-     A = res$A
-     A0 = res$A0
-     sigma = res$sigma
+   A = res$A
+   A0 = res$A0
+   sigma = res$sigma
      
      
       

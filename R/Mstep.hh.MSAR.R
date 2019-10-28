@@ -83,9 +83,11 @@ function(data,theta,FB,sigma.diag=FALSE,sigma.equal=FALSE)  {
                	A2[j,kp,] = A2tmp[1:d,((kp-1)*d+1):(kp*d)]
             }
 		   }
+		  
 		  if (sigma.equal & M>1){
-		    S=prior[1]*Sigma[1:d,1:d,1]
-		    for (j in 2:M){S = S+prior[2]*Sigma[1:d,1:d,2]}
+		    pi_prob = normalise(postmix)
+		    S=pi_prob[1]*Sigma[1:d,1:d,1]
+		    for (j in 2:M){S = S+pi_prob[j]*Sigma[1:d,1:d,j]}
 		    for (j in 1:M){Sigma[1:d,1:d,j] = S}
 		  }
 
@@ -100,8 +102,9 @@ function(data,theta,FB,sigma.diag=FALSE,sigma.equal=FALSE)  {
 			    }
 			}		  
 		  if (sigma.equal & M>1){
-			  S=prior[1]*Sigma[1:d,1:d,1]
-			  for (j in 2:M){S = S+prior[j]*Sigma[1:d,1:d,j]}
+		    pi_prob = normalise(postmix)
+		    S=pi_prob[1]*Sigma[1:d,1:d,1]
+			  for (j in 2:M){S = S+pi_prob[j]*Sigma[1:d,1:d,j]}
 			  for (j in 1:M){Sigma[1:d,1:d,j] = S}
 			}
 		  

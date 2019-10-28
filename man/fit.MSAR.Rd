@@ -4,7 +4,7 @@
 \title{
 Fit (non) homogeneous Markov switching autoregressive models}
 \description{
-Fit (non) homogeneous Markov switching autoregressive models by EM algorithm. Non homogeneity may be introduce at the intercept level or in the probability transitions. The link functions are defined in the initialisation step (running init.theta.MSAR.R). 
+Fit (non) homogeneous Markov switching autoregressive models by EM algorithm. Non homogeneity may be introduced at the intercept level or in the probability transitions. The link functions are defined in the initialisation step (running init.theta.MSAR.R). 
 }
 \usage{
 fit.MSAR(data, theta, MaxIter = 100, eps = 1e-05, verbose = FALSE, 
@@ -48,13 +48,13 @@ dimension in each sites. For instance, if one considers only wind intensity than
   \item{sigma.diag}{If sigma.diag==TRUE the estimated covariance of the innovation will be diagonal 
   (default is FALSE) -  available only for HH models 
   }
-  \item{sigma.equal}{If sigma.equal==TRUE the estimated covariance of the innovation will be the same in all regimes -  available only for HH models
+  \item{sigma.equal}{If sigma.equal==TRUE the estimated covariance of the innovation will be the same in all regimes -  available only for models with homogeneous emission probabilities
   (default is FALSE)}
   \item{penalty}{choice of the penalty for the autoregressive matrices. Possible values are ridge (available for regression matrices only), lasso or SCAD (default). }
  \item{lambda1}{
 penalization constant for the precision matrices. It may be a scalar or a vector of length M (with M the number of regimes). If it is equal to 0 no penalization is introduced for the precision matrices. }
   \item{lambda2}{
-penalization constant for the autoregressive matrices. It may be a scalar or a vector of length M (with M the number of regimes). }
+penalization constant for the autoregressive matrices (available only for MSAR of order 1). It may be a scalar or a vector of length M (with M the number of regimes). If lambda2 is a scalar, it is weighted by the prior in each regime.  }
 \item{a}{fixed penalisation constant for SCAD penalty}
  \item{...}{other arguments}
 

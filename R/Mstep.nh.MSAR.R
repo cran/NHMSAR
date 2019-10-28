@@ -1,5 +1,5 @@
 Mstep.nh.MSAR <-
-function(data,theta,FB,covar=NULL,method=method,ARfix=FALSE,reduct=FALSE,penalty=FALSE,sigma.diag=FALSE,lambda1=lambda1,lambda2=lambda2,par = NULL)  {  
+function(data,theta,FB,covar=NULL,method=method,ARfix=FALSE,reduct=FALSE,penalty=FALSE,sigma.diag=FALSE,sigma.equal=FALSE,lambda1=lambda1,lambda2=lambda2,par = NULL)  {  
 	
 	  order=attributes(theta)$order
 	  d=dim(data)[3]
@@ -14,7 +14,7 @@ function(data,theta,FB,covar=NULL,method=method,ARfix=FALSE,reduct=FALSE,penalty
 
 	  N.samples = dim(covar)[2]
 	  ncov.trans = dim(covar)[3]
-      if (!ARfix & !reduct & penalty==FALSE) {par.hh = Mstep.hh.MSAR(data,theta,FB)}
+      if (!ARfix & !reduct & penalty==FALSE) {par.hh = Mstep.hh.MSAR(data,theta,FB,sigma.equal=sigma.equal,sigma.diag=sigma.diag)}
       else if (reduct) {par.hh = Mstep.hh.reduct.MSAR(data,theta,FB,sigma.diag=sigma.diag)}
       else if (penalty=="SCAD") { par.hh = Mstep.hh.SCAD.MSAR(data,theta,FB,penalty=penalty,lambda1=lambda1,lambda2=lambda2,par=par)
     		}
@@ -38,7 +38,7 @@ function(data,theta,FB,covar=NULL,method=method,ARfix=FALSE,reduct=FALSE,penalty
       if (is.null(method)) {method="ucminf"}
       if (method=="ucminf") {resopt = ucminf(par.init,fn=loglik_nh_inp,gr=NULL,covar=array(covar[deb+(1:(lxi)),,],c(lxi,N.samples,ncov.trans)),xi=FB$probSS,nh_transition=nh_transition,hessian=0,control = list(trace=FALSE))}
       else if (method=="L-BFGS-B"){resopt = optim(par.init,fn=loglik_nh_inp,gr=NULL,covar=array(covar[deb+(1:(lxi)),,],c(lxi,N.samples,ncov.trans)),xi=FB$probSS,nh_transition=nh_transition,hessian=0,control = list(trace=FALSE),method="L-BFGS-B")}
-	  else if (method=="BFGS"){resopt = optim(par.init,fn=loglik_nh_inp,gr=NULL,covar=array(covar[deb+(1:(lxi)),,],c(lxi,N.samples,ncov.trans)),xi=FB$probSS,nh_transition=nh_transition,hessian=0,control = list(trace=FALSE),method="BFGS")}
+	    else if (method=="BFGS"){resopt = optim(par.init,fn=loglik_nh_inp,gr=NULL,covar=array(covar[deb+(1:(lxi)),,],c(lxi,N.samples,ncov.trans)),xi=FB$probSS,nh_transition=nh_transition,hessian=0,control = list(trace=FALSE),method="BFGS")}
       res = deplie2(resopt$par);
       trans = res$trans ;
       par.trans = res$par ;

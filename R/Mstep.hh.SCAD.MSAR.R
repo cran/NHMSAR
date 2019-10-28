@@ -1,4 +1,4 @@
-
+require(glasso)
 der.scad <- function(A,a,lambda) {
   d = dim(A)[1]
   dpen = matrix(1,d,d)
@@ -61,7 +61,7 @@ grad.ll.pen2 <- function(A,S,Cxx,Cxy,Cyy,omega){ #-grad.ll
 Mstep.hh.SCAD.MSAR <-
   function(data,theta,FB,lambda1=.1,lambda2=.1,penalty="SCAD",par=NULL)  {  
     
-    Miter = 30
+    Miter = 5
     T=dim(data)[1]
     N.samples = dim(as.array(data))[2] 
     d = dim(as.array(data))[3]
@@ -69,8 +69,8 @@ Mstep.hh.SCAD.MSAR <-
     M <- attributes(theta)$NbRegimes
     p <- attributes(theta)$order
     order <- max(p,1)
-    if (length(lambda1)==1) {lambda1 = matrix(lambda1,1,M)}
-    if (length(lambda2)==1) {lambda2 = matrix(lambda2,1,M)}
+    if (length(lambda1)==1) {lambda1 = matrix(lambda1,1,M)*matrix(theta$prior,1,M)}
+    if (length(lambda2)==1) {lambda2 = matrix(lambda2,1,M)*matrix(theta$prior,1,M)}
     data = array(data,c(T,N.samples,d))
     data2 = array(0,c(order*d,T-order+1,N.samples))
     cpt=1
@@ -161,6 +161,7 @@ Mstep.hh.SCAD.MSAR <-
           pen.term1 = der.scad(A,a,lambda2[j])
           pen.term2 = diag(pen.term1[nzA]/abs(A)[nzA]) 
           H = hess.ll_reg(A,S,Cxx[,,j],Cxy[,,j],Cyy[,,j])[nzA,nzA]+N*pen.term2
+          if (length(H)==0) {stop(paste("In regime",j,", lambda2 = ",lambda2[j],"and is to strong."))}
           #A[nzA] = c(A)[nzA]-solve(H) %*% matrix(c(grad.ll_reg(A,S,Cxx[,,j],Cxy[,,j],Cyy[,,j]))[nzA]+N*diag(pen.term2)*A[nzA],length(nzA),1)
           A[nzA] = c(A)[nzA]-solve(H,matrix(c(grad.ll_reg(A,S,Cxx[,,j],Cxy[,,j],Cyy[,,j]))[nzA]+N*diag(pen.term2)*A[nzA],length(nzA),1))
           err = norm(A-A.old)
