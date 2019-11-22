@@ -173,7 +173,7 @@ dimnames[[2]]
     if (penalty!="SCAD" ) {lambda1=rep(0,M)}
     npar = M*d+M*(M-1)
     if (substr(label,1,1)=="N") {npar = npar+M*length(theta$par.trans[1,])}
-    if (substr(label,2,2)=="N") {npar = npar+M*length(theta$par.emis[1,])}
+    if (substr(label,2,2)=="N") {npar = npar+M*length(theta$par.emis[[1]])} # modified 2019/11/21
     for (m in 1:M) {
     	npar = npar+sum(abs(theta$A[[m]][[1]])>0)
     	if (penalty!="SCAD" | max(abs(lambda1))==0) {npar = npar+sum(abs(theta$sigma[[m]][upper.tri(theta$sigma[[m]],diag=TRUE)])>0)}

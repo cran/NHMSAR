@@ -1,4 +1,4 @@
-bdc2f723505d50bf13209197e80dd3af *DESCRIPTION
+d3fd966c7ff041b343a915257ec7ebf1 *DESCRIPTION
 554ba1e55dbbdc93d11006cbb8fd6756 *NAMESPACE
 5dc9fad58d4a551ed0742e26d6dbbee5 *R/EM_converged.R
 8591c60501026263ef21fdc07463e483 *R/ENu_graph.R
@@ -36,7 +36,7 @@ deeb1e4dcdc601693ba9719054ae63a5 *R/deplie2.VM.R
 d99796dea0a78806668bbdb6b1f5c14d *R/emis4ps.MSAR.R
 7ca8ea11b3cbb845d6ac421e18c6da98 *R/emisprob.MSAR.R
 8c0bb7f53131f4c9a521b87570fffd69 *R/emisprob.MSAR.VM.R
-97c780ca359cf6fc63cdfbd7bfba0436 *R/fit.MSAR.R
+f4084b29bbe77915a909830714e2387c *R/fit.MSAR.R
 14d3b1d9cc977cb90a7d53e0b83a438f *R/fit.MSAR.VM.R
 558400cfd3c2c4dffc3046d20549a0d3 *R/forecast.prob.MSAR.R
 76ede8bb4dc8f399457d8f5d731ea498 *R/forwards_backwards.R
