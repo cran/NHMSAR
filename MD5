@@ -1,4 +1,4 @@
-b27cf535efd650a5027ea3e2b67b15b8 *DESCRIPTION
+c7dd9655a9c09026e096b9111c6aca91 *DESCRIPTION
 554ba1e55dbbdc93d11006cbb8fd6756 *NAMESPACE
 5dc9fad58d4a551ed0742e26d6dbbee5 *R/EM_converged.R
 8591c60501026263ef21fdc07463e483 *R/ENu_graph.R
@@ -6,7 +6,7 @@ b27cf535efd650a5027ea3e2b67b15b8 *DESCRIPTION
 affa76cd5fa7f3ddf85543fdcc162dc2 *R/Estep.MSAR.VM.R
 82d3ac024a983efad7a892a3be61b9a9 *R/MeanDurOver.R
 cf51ff8c000ee9e416309ad61b19fdb2 *R/MeanDurUnder.R
-a99c66e5c3072165e2114f2990311032 *R/Mstep.classif.R
+79329346d7143f81fdc50a4b181275d7 *R/Mstep.classif.R
 bd2c3f10c7eba50276c330fd16bc89aa *R/Mstep.hh.MSAR.R
 a9a097fc0a405635b66395f3b7c50fd9 *R/Mstep.hh.MSAR.VM.R
 3e6e8bcb2536d577e21e93b4adae5cf2 *R/Mstep.hh.MSAR.with.constraints.R
@@ -40,7 +40,7 @@ f4084b29bbe77915a909830714e2387c *R/fit.MSAR.R
 14d3b1d9cc977cb90a7d53e0b83a438f *R/fit.MSAR.VM.R
 558400cfd3c2c4dffc3046d20549a0d3 *R/forecast.prob.MSAR.R
 76ede8bb4dc8f399457d8f5d731ea498 *R/forwards_backwards.R
-12c1270bb418aab2c09db57061a22a25 *R/init.theta.MSAR.R
+66c6517524392bccc08e59fd472672fa *R/init.theta.MSAR.R
 4b61c8e713f64776974d8ad7b2a186ca *R/init.theta.MSAR.VM.R
 9f05f547f3d41fb20901bdfecc699859 *R/init.theta.MSAR.miss.R
 d51dce6a9c4c15329c2501e2d8b9a046 *R/is.thetaMSAR.R

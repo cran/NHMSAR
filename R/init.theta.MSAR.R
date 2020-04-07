@@ -15,14 +15,14 @@ function(data,...,M,order,regime_names=NULL,nh.emissions=NULL,nh.transitions=NUL
      else {d = dim(data)[3]} 
      
      
-  if (cl.init == "mean") {
+   if (cl.init == "mean" | order==0) {
 		 d.data = matrix(0,(T-1)*N.samples,d)
 		 data.mat = matrix(0,T*N.samples,d)
 		 for (id in 1:d) { 
 			 d.data[,id] = c(data[2:T,,id]-data[1:(T-1),,id])
 			 data.mat[,id] = c(data[,,id])
 		 }
-		 if (M>1) {
+		 if (M>1) { if (order>0){
 		 	centers=d.data[sample(1:dim(d.data)[1],M),] 
 		 	if (any(duplicated(centers))) {
 		 		cnt=0
@@ -33,19 +33,23 @@ function(data,...,M,order,regime_names=NULL,nh.emissions=NULL,nh.transitions=NUL
 		 		if (any(duplicated(centers))) {print("Is there a lot of equal data?")}
 		 	}
 			mc = kmeans(d.data,centers=centers)
+		 } else {
+		   centers=data.mat[sample(1:dim(data.mat)[1],M),] 
+		   mc = kmeans(data.mat,centers=centers)
+		 }
 			class = mc$cluster
 		 }
 		 else {class = 1}
 	 }
-  else {    
-     	d.var = array(0,c((T-1),N.samples,d))
+   else {    
+    d.var = array(0,c((T-1),N.samples,d))
 		ht = 3
-    	for (id in 1:d) { 
+    for (id in 1:d) { 
 			for (t in 1:(T-1)) {
-        		ii = max(t-ht,1):min(T-1,t+ht)
+        	ii = max(t-ht,1):min(T-1,t+ht)
      			d.var[t,,id] = apply(data[ii+1,,id]-data[ii,,id],2,var)    
-     		}
      	}
+    }
 		qv = quantile(d.var,probs=(1:M)/M)
 		d.var = matrix(d.var,(T-1)*N.samples,d)    
 		if (M>1) {
@@ -53,10 +57,20 @@ function(data,...,M,order,regime_names=NULL,nh.emissions=NULL,nh.transitions=NUL
 			class = mc$cluster
 		}
 	 }
-	 res = Mstep.classif(data,array(class,c(T,N.samples,1)),order=order)
-   A = res$A
-   A0 = res$A0
-   sigma = res$sigma
+	 if (order>0) {
+	   res = Mstep.classif(data,array(class,c(T,N.samples,1)),order=order)
+     A = res$A
+     A0 = res$A0
+     sigma = res$sigma
+	 } else {
+	   A = sigma = list()
+	   A0 = matrix(NA,M,d)
+	   for (m in 1:M){
+	     w = which(class=m)
+	     A0[m,] = apply(data.mat[w,],2,mean) 
+	     sigma[[m]] = cov(data.mat[w,])
+	   }
+	 }
      
      
       

@@ -28,7 +28,7 @@ function(data,C,order,sigma.diag=FALSE)  {
 #	exp_num_visits1 = 0
 	postmix = 0
 	m = matrix(0,d*order,M) ; m_1 = m ; c = matrix(0,M,1) ; s=c ; 
-    op = array(0,c(d*order,d*order,M) ); op_1 = op ; op_2 = op_1 ;
+  op = array(0,c(d*order,d*order,M) ); op_1 = op ; op_2 = op_1 ;
 
 	for (ex in 1:N.samples) {
 		obs = array(data2[,,ex],c(d*order,T))
