@@ -1,26 +1,32 @@
 init.theta.MSAR <-
-function(data,...,M,order,regime_names=NULL,nh.emissions=NULL,nh.transitions=NULL,label=NULL,ncov.emis = 0,ncov.trans=0,cl.init="mean"
+function(data,...,M,order,regime_names=NULL,nh.emissions=NULL,nh.transitions=NULL,
+         label=NULL,ncov.emis = 0,ncov.trans=0,cl.init="mean"
 ) {
 	if (missing(M) || is.null(M) || M==0) {print("Need at least one regime : M=1"); M <- 1 }
 	if (missing(order)) { order <- 0 } # AR order
-    if (missing(label)) {label = 'HH'}
-    T = dim(data)[1]
-    N.samples = dim(data)[2]
-    d = dim(data)[3]
-    if (is.null(d) ) {d=1}
-    else if ( is.na(d)) {d=1}
-    #if (d==1) {data <- as.matrix(data)}
+  if (missing(label)) {label = 'HH'}
+  T = dim(data)[1]
+  N.samples = dim(data)[2]
+  d = dim(data)[3]
+  if (is.null(d) ) {d=1}
+  else if ( is.na(d)) {d=1}
+  #if (d==1) {data <- as.matrix(data)}
+  if (length(dim(data))<3) {d = 1}
+  else {d = dim(data)[3]} 
+     
 
-     if (length(dim(data))<3) {d = 1}
-     else {d = dim(data)[3]} 
-     
-     
    if (cl.init == "mean" | order==0) {
 		 d.data = matrix(0,(T-1)*N.samples,d)
 		 data.mat = matrix(0,T*N.samples,d)
 		 for (id in 1:d) { 
 			 d.data[,id] = c(data[2:T,,id]-data[1:(T-1),,id])
 			 data.mat[,id] = c(data[,,id])
+		 }
+		 if (is.na(sum(data))) {
+		   w = which(is.na(apply(d.data,1,sum)))
+		   d.data = matrix(d.data[-w,],(T-1)*N.samples-length(w),d)
+		   w = which(is.na(apply(data.mat,1,sum)))
+		   data.mat = matrix(data.mat[-w,],(T)*N.samples-length(w),d)
 		 }
 		 if (M>1) { if (order>0){
 		 	centers=d.data[sample(1:dim(d.data)[1],M),] 
@@ -56,8 +62,8 @@ function(data,...,M,order,regime_names=NULL,nh.emissions=NULL,nh.transitions=NUL
 			mc = kmeans(d.var,centers=d.var[sample(1:dim(d.var)[1],M),])
 			class = mc$cluster
 		}
-	 }
-	 if (order>0) {
+   }
+  if (order>0) {
 	   res = Mstep.classif(data,array(class,c(T,N.samples,1)),order=order)
      A = res$A
      A0 = res$A0
@@ -66,14 +72,12 @@ function(data,...,M,order,regime_names=NULL,nh.emissions=NULL,nh.transitions=NUL
 	   A = sigma = list()
 	   A0 = matrix(NA,M,d)
 	   for (m in 1:M){
-	     w = which(class=m)
-	     A0[m,] = apply(data.mat[w,],2,mean) 
-	     sigma[[m]] = cov(data.mat[w,])
+	     w = which(class==m)
+	     A0[m,] = apply(matrix(data.mat[w,],length(w),d),2,mean,na.rm =TRUE) 
+	     sigma[[m]] = cov(matrix(data.mat[w,],length(w),d),use ="complete.obs")
 	   }
 	 }
      
-     
-      
      #TRANSITION PROBABILITY MATRIX / INITIAL DISTRIBUTION
      if (M>1) {
      	prior <- normalise(runif(M)) 
@@ -160,7 +164,6 @@ function(data,...,M,order,regime_names=NULL,nh.emissions=NULL,nh.transitions=NUL
 					   ncov = dim(covar)[3]
 					   M = dim(transmat)[1]
 					   par.trans = repmat(t(par.trans[,2])*exp(1i*par.trans[,1]),M,1)%*%(matrix(1,M,M)-diag(1,nrow=M))
-
 					   f <- array(0,c(M,M,T))
 					   for (j in 1:M) {	
 						   for (i in 1:M) {

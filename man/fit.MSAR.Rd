@@ -118,7 +118,7 @@ T = dim(data)[1]
 N.samples = dim(data)[2]
 d = dim(data)[3]
 M = 2
-order = 2
+order = 2 # MSAR of order 2
 theta.init = init.theta.MSAR(data,M=M,order=order,label="HH") 
 mod.hh = fit.MSAR(data,theta.init,verbose=TRUE,MaxIter=20)
 #regimes.plot.MSAR(mod.hh,data,ylab="temperatures") 

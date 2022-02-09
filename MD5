@@ -1,4 +1,4 @@
-c7dd9655a9c09026e096b9111c6aca91 *DESCRIPTION
+a68ea664798e380cf6ba4d504248174f *DESCRIPTION
 554ba1e55dbbdc93d11006cbb8fd6756 *NAMESPACE
 5dc9fad58d4a551ed0742e26d6dbbee5 *R/EM_converged.R
 8591c60501026263ef21fdc07463e483 *R/ENu_graph.R
@@ -6,7 +6,7 @@ c7dd9655a9c09026e096b9111c6aca91 *DESCRIPTION
 affa76cd5fa7f3ddf85543fdcc162dc2 *R/Estep.MSAR.VM.R
 82d3ac024a983efad7a892a3be61b9a9 *R/MeanDurOver.R
 cf51ff8c000ee9e416309ad61b19fdb2 *R/MeanDurUnder.R
-79329346d7143f81fdc50a4b181275d7 *R/Mstep.classif.R
+345d4b1001f8631278f9310fb4255fef *R/Mstep.classif.R
 bd2c3f10c7eba50276c330fd16bc89aa *R/Mstep.hh.MSAR.R
 a9a097fc0a405635b66395f3b7c50fd9 *R/Mstep.hh.MSAR.VM.R
 3e6e8bcb2536d577e21e93b4adae5cf2 *R/Mstep.hh.MSAR.with.constraints.R
@@ -40,9 +40,9 @@ f4084b29bbe77915a909830714e2387c *R/fit.MSAR.R
 14d3b1d9cc977cb90a7d53e0b83a438f *R/fit.MSAR.VM.R
 558400cfd3c2c4dffc3046d20549a0d3 *R/forecast.prob.MSAR.R
 76ede8bb4dc8f399457d8f5d731ea498 *R/forwards_backwards.R
-66c6517524392bccc08e59fd472672fa *R/init.theta.MSAR.R
+e1d6f48acc2e6ffa0ab34d5a9d0cf803 *R/init.theta.MSAR.R
 4b61c8e713f64776974d8ad7b2a186ca *R/init.theta.MSAR.VM.R
-9f05f547f3d41fb20901bdfecc699859 *R/init.theta.MSAR.miss.R
+3aa1a772a7209c17b012612c0c420692 *R/init.theta.MSAR.miss.R
 d51dce6a9c4c15329c2501e2d8b9a046 *R/is.thetaMSAR.R
 b718de4b7d42404235d8bf92f76afb4a *R/ll_gauss.MSAR.R
 a4ecb7532d116a3b620ae01694deea9d *R/ll_gausshn.MSAR.R
@@ -50,8 +50,8 @@ af5b03ca8d48c3c5300abdc31ac3b536 *R/ll_gausshn_p0.MSAR.R
 9f3756a63cc0b314ecf77a91d4a47854 *R/ll_vonMises.MSAR.R
 073cbc171f69d6ba19d58a34daf43522 *R/ll_vonMises.c.MSAR.R
 aa74aa03a4fcea3eda358c3f3aa9cc01 *R/log_dens_Von_Mises.R
-41e19aabf60bbf275d684a617fcee6bb *R/loglik_nh_inp.R
-f9a1f52ecd3c97b71138883cf4e495ce *R/loglik_nh_inp.VM.R
+3393c326f7836092a29f4ced96ff9c0b *R/loglik_nh_inp.R
+df48b1de9e839410791bd24d0b9118e4 *R/loglik_nh_inp.VM.R
 a5d85a88138a3688c137845d76ca3b9b *R/mk_stochastic.R
 d219dc9df763d948da048fd571a65af0 *R/nhforwards_backwards.R
 31abc85694c0fdb7df0b95b84beabca0 *R/normalise.R
@@ -110,7 +110,7 @@ fa6b306518b2904b970ee75c28040b7f *man/WindDir.Rd
 2518140abf4b032dd8f0e4c7ab1d8671 *man/cor.MSAR.Rd
 c7c5d6cbbd5d365fcda8bb04d2c73729 *man/cross.cor.MSAR.Rd
 b2e4218f51da623618fe066cf677af92 *man/emisprob.MSAR.VM.Rd
-ab4e6bc73b2e4be73020c9bcb73a029c *man/fit.MSAR.Rd
+bc3767ebc80efd6de683d1b4b57f4d85 *man/fit.MSAR.Rd
 b0527132698aa2e1329bf35a480bfe31 *man/fit.MSAR.VM.Rd
 9363987330fa32aa1318211934305937 *man/forecast.prob.MSAR.Rd
 f01d8729f0e1cee721d1190ccbcc9e26 *man/forwards_backwards.Rd

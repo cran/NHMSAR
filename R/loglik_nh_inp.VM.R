@@ -12,7 +12,7 @@ function(Y,covar,xi, nh_transition) {
   f1 =0
   for (ex in (1:N.samples)) { 
   	transition=nh_transition(array(covar[ ,ex,],c(T,1,dim(covar)[3])),res$par,transmat);     
-    w = which(transition<1e-15,arr.ind=T)
+    w = which(transition<1e-15,arr.ind=TRUE)
     if (length(w[,1])>0) {for (k in 1:length(w[,1])) {
     		transition[w[k,1],w[k,2],w[k,3]] = 1e-15}}
     ltr = log(transition)

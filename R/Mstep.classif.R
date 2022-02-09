@@ -6,6 +6,7 @@ function(data,C,order,sigma.diag=FALSE)  {
 	if(is.null(d)|is.na(d)) {d = 1}
   M <- length(unique(c(C)))
   p <- order
+  if (order==0){stop("Mstep.classif not available for order 0")}
 	order <- max(p,1)
 	
 	if (p>0){ # modif le 17/01/2019 (before it was : p>1)

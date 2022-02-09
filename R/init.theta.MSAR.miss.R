@@ -1,4 +1,4 @@
-init.theta.MSAR <-
+init.theta.miss.MSAR <-
 function(data,...,M,order,regime_names=NULL,nh.emissions=NULL,nh.transitions=NULL,label=NULL,ncov.emis = 0,ncov.trans=0,cl.init="mean"
 ) {
 	if (missing(M) || is.null(M) || M==0) {print("Need at least one regime : M=1"); M <- 1 }
@@ -58,10 +58,21 @@ function(data,...,M,order,regime_names=NULL,nh.emissions=NULL,nh.transitions=NUL
 			class = mc$cluster
 		}
 	 }
-	 res = Mstep.classif(data,array(class,c(T,N.samples,1)),order=order)
-     A = res$A
-     A0 = res$A0
-     sigma = res$sigma
+    if (order>0) {
+      #print(paste("order =",order))
+      res = Mstep.classif(data,array(class,c(T,N.samples,1)),order=order)
+      A = res$A
+      A0 = res$A0
+      sigma = res$sigma
+    } else {
+      A = sigma = list()
+      A0 = matrix(NA,M,d)
+      for (m in 1:M){
+        w = which(class==m)
+        A0[m,] = apply(matrix(data.mat[w,],length(w),d),2,mean,na.rm =TRUE) 
+        sigma[[m]] = cov(matrix(data.mat[w,],length(w),d),use="complete.obs")
+      }
+    }
      #for (){if (det(sigma)<0) {sigma = sigma+1e-4*diag(1,d)}}
       
      #TRANSITION PROBABILITY MATRIX / INITIAL DISTRIBUTION
